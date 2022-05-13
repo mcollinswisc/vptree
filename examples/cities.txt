@@ -1,0 +1,184 @@
+"Deadhorse"		70°12'N	148°31'W
+"Tromsø"		69°41'N 18°57'E
+"Murmansk"		68°58'N 33°05'E
+"Fairbanks"		64°51'N 147°43'W
+"Anchorage"		61°13'N	149°54'W
+"Oslo"			59°57'N 10°45'E
+"Saint Petersburg"	59°57'N 30°18'E
+"Stockholm" 		59°20'N 18°04'E
+"Edinburgh" 		55°57'N	3°11'W
+"Moscow"		55°45'N 37°37'E
+"Novosibirsk"		55°01'N 82°56'E
+"Leeds"			53°48'N 1°33'W
+"Edmonton"		53°32'N 113°30'W
+"Dublin"		53°21'N 6°16'W
+"Petropavlovsk-Kamchatsky" 53°01'N 158°39'E
+"Berlin"		52°31'N 13°23'E
+"Irkutsk"		52°19'N 104°18'E
+"Warsaw"		52°14'N 21°01'E
+"Cambridge"		52°12'N 0°07'E
+"The Hague"		52°05'N 4°19'E
+"Oxford"		51°45'N 1°15'W
+"London"		51°30'N 0°08'W
+"Bath"			51°23'N 2°22'W
+"Leipzig"		51°20'N 12°23'E
+"Calgary"		51°03'N 114°04'W
+"Lille"			50°38'N 3°03'E
+"Kiev"			50°27'N 30°31'E
+"Winnipeg"		49°54'N	97°08'W
+"Vancouver"		49°15'N	123°06'W
+"Paris"			48°51'N	2°21'E
+"Vienna"		48°13'N	16°22'E
+"Munich"		48°08'N	11°34'E
+"Ulan Bator"		47°55'N	106°55'E
+"Seattle"		47°37'N	122°20'W
+"Budapest"		47°28'N	19°03'E
+"Zürich"		47°22'N	8°33'E
+"Odessa"		46°28'N	30°44'E
+"Geneva"		46°12'N	6°09'E
+"Portland"		45°31'N	122°41'W
+"Montreal"		45°30'N	73°34'W
+"Venice"		45°26'N	12°20'E
+"Minneapolis"		44°59'N	93°16'W
+"Halifax"		44°51'N	63°12'W
+"Bucharest"		44°26'N	26°06'E
+"Sarajevo"		43°51'N	18°21'E
+"Toronto"		43°42'N	79°24'W
+"Sochi"			43°35'N	39°43'E
+"Marseille"		43°18'N	5°22'E
+"Almaty"		43°17'N	76°54'E
+"Rochester"		43°10'N	77°37'W
+"Vladivostok"		43°08'N	131°54'E
+"Sapporo"		43°04'N	141°21'E
+"Milwaukee"		43°03'N	87°57'W
+"Boston"		42°21'N	71°04'W
+"Detroit"		42°20'N	83°03'W
+"Rome"			41°54'N	12°30'E
+"Chicago"		41°53'N	87°38'W
+"Tbilisi"		41°43'N	44°47'E
+"Cleveland"		41°29'N	81°40'W
+"Barcelona"		41°23'N	2°11'E
+"Cheyenne"		41°09'N	104°48'W
+"Istanbul"		41°01'N	28°57'E
+"Naples"		40°51'N 14°16'E
+"Salt Lake City"	40°45'N 111°53'W
+"New York City"		40°40'N	73°56'W
+"Madrid"  		40°24'N 3°41'W
+"Philadelphia" 		39°57'N 75°10'W
+"Beijing" 		39°54'N 116°24'E
+"Baltimore" 		39°17'N 76°37'W
+"Cincinnati" 		39°06'N 84°31'W
+"Pyongyang" 		39°01'N 125°44'E
+"Lisbon" 		38°43'N 9°08'W
+"St. Louis" 		38°38'N 90°12'W
+"Louisville" 		38°15'N 85°46'W
+"Palermo" 		38°07'N 13°22'E
+"Athens" 		37°58'N 23°43'E
+"San Francisco" 	37°47'N 122°25'W
+"Seoul" 		37°34'N 126°59'E
+"Tunis" 		36°48'N 10°11'E
+"Las Vegas" 		36°11'N 115°08'W
+"Raleigh" 		35°49'N 78°39'W
+"Tehran" 		35°42'N 51°25'E
+"Tokyo" 		35°41'N 139°42'E
+"Albuquerque" 		35°07'N 106°37'W
+"Osaka" 		34°42'N 135°30'E
+"Los Angeles" 		34°03'N 118°15'W
+"Beirut" 		33°53'N 35°31'E
+"Atlanta" 		33°45'N 84°23'W
+"Islamabad" 		33°43'N 73°04'E
+"Casablanca" 		33°32'N 7°35'W
+"Damascus" 		33°31'N 36°18'E
+"Pheonix" 		33°27'N 112°04'W
+"Baghdad" 		33°20'N 44°26'E
+"Tripoli" 		32°54'N 13°11'E
+"Tijuana" 		32°32'N 117°02'W
+"Tel Aviv" 		32°04'N 34°47'E
+"Nanjing" 		32°03'N 118°46'E
+"Jerusalem" 		31°47'N 35°13'E
+"Marrakech" 		31°38'N 8°01'W
+"Gaza" 			31°31'N 34°27'E
+"Shanghai" 		31°12'N 121°30'E
+"Chengdu" 		30°40'N 104°04'E
+"Austin" 		30°15'N 97°45'W
+"Cairo" 		30°3'N 	31°14'E
+"New Orleans" 		29°58'N 90°03'W
+"Houston" 		29°46'N 95°23'W
+"Chongqing" 		29°34'N 106°34'E
+"Kuwait City" 		29°22'N 47°59'E
+"New Delhi" 		28°37'N 77°13'E
+"Kathmandu" 		27°42'N 85°20'E
+"Miami" 		25°47'N 80°13'W
+"Dubai" 		25°15'N 55°18'E
+"Nassau" 		25°04'N 77°20'W
+"Karachi" 		24°52'N 67°01'E
+"Dhaka" 		23°42'N 90°23'E
+"Havana" 		23°08'N 82°23'W
+"Guangzhou" 		23°08'N 113°16'E
+"Kolkata" 		22°34'N 88°22'E
+"Shenzhen" 		22°33'N 114°06'E
+"Hong Kong" 		22°17'N 114°10'E
+"Mecca" 		21°25'N 39°49'E
+"Honolulu" 		21°19'N 157°50'W
+"Hanoi" 		21°02'N 105°51'E
+"Mexico City" 		19°26'N 99°08'W
+"Mumbai" 		18°59'N 72°50'E
+"Road Town" 		18°26'N 64°37'W
+"Hyderabad" 		17°22'N 78°29'E
+"Khartoum" 		15°38'N 32°32'E
+"Manila" 		14°35'N 120°58'E
+"Bangkok" 		13°45'N 100°28'E
+"Bangalore" 		12°58'N 77°34'E
+"Ho Chi Minh City" 	10°46'N 106°41'E
+"Caracas"    		10°30'N 66°55'W
+"Phuket"     		7°53'N 	98°24'E
+"Lagos" 		6°27'N 	3°24'E
+"Accra" 		5°33'N 	0°12'W
+"Bogotá" 		4°36'N 	74°05'W
+"Kuala Lumpur" 		3°09'N 	101°42'E
+"Mogadishu" 		2°02'N 	45°21'E
+"Singapore" 		1°17'N 	103°50'E
+"Entebbe" 		0°03'N 	32°28'E
+"Nairobi" 		1°17'S 	36°49'E
+"Kigali" 		1°57'S 	30°04'E
+"Mombasa" 		4°03'S 	39°40'E
+"Kinshasa"		4°20'S 	15°19'E
+"Victoria"		4°37'S 	55°27'E
+"Zanzibar City" 	6°10'S 	39°12'E
+"Jakarta" 		6°12'S 	106°48'E
+"Malang" 		7°59'S 	112°37'E
+"Luanda"		8°50'S 	13°14'E
+"Funafuti"		8°31'S 	179°13'E
+"Port Moresby" 		9°31'S 	147°13'E
+"Lima" 			12°03'S 77°02'W
+"Darwin" 		12°27'S 130°50'E
+"Pago Pago" 		14°17'S 170°42'W
+"Brasília" 		15°48'S 47°52'W
+"La Paz" 		16°30'S 68°09'W
+"Cairns" 		16°56'S 145°47'E
+"Harare" 		17°52'S 31°02'E
+"Suva" 			18°08'S 178°27'E
+"Belo Horizonte"	19°55'S 43°56'W
+"Windhoek"		22°34'S 17°05'E
+"Rio de Janeiro" 	22°55'S 43°12'W
+"São Paulo" 		23°33'S 46°38'W
+"Gaborone"		24°39'S	25°55'E
+"Asunción"		25°17'S 57°38'W
+"Johannesburg" 		26°12'S 28°03'E
+"Mbabane"		26°19'S 31°08'E
+"Brisbane"		27°28'S 153°02'E
+"Maseru"		29°19'S 27°29'E
+"Perth" 		31°57'S 115°52'E
+"Santiago" 		33°27'S 70°40'W
+"Sydney" 		33°52'S 151°13'E
+"Cape Town" 		33°56'S 18°25'E
+"Buenos Aires" 		34°36'S 58°23'W
+"Montevideo"		34°53'S 56°11'W
+"Canberra"		35°18'S 149°07'E
+"Auckland" 		36°50'S 174°44'E
+"Melbourne"		37°49'S	144°58'E
+"Hobart" 		42°53'S 147°20'E
+"Christchurch" 		43°32'S 172°37'E
+"Stanley"		51°41'S 57°51'W
+"Punta Arenas"		53°10'S 70°56'W
+"McMurdo" 		77°51'S 166°40'W

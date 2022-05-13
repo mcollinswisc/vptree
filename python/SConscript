@@ -1,0 +1,41 @@
+from __future__ import print_function
+import os, os.path
+import distutils.sysconfig
+
+Import('static_lib')
+env = Environment(ENV = os.environ)
+
+if env.WhereIs('cython') is not None:
+    # Cythonize
+    env.Tool('cython')
+    pyvptree_c = env.Cython('pyvptree.c', 'pyvptree.pyx')
+    env.Depends(pyvptree_c, 'vptree.pxd')
+    env.Depends(pyvptree_c, '#/include/vptree/vptree.h')
+
+    # Set up python-friendly compilation environment
+    config_vars = distutils.sysconfig.get_config_vars()
+
+    if 'CC' in config_vars:
+        env['CC'] = config_vars['CC']
+    if 'BASECFLAGS' in config_vars:
+        env['CFLAGS'] = config_vars['BASECFLAGS'].split()
+    if 'OPT' in config_vars:
+        env.AppendUnique(CFLAGS = config_vars['OPT'].split())
+    if 'SO' in config_vars:
+        env['SHLIBSUFFIX'] = config_vars['SO']
+
+    env.AppendUnique(CPPPATH = [distutils.sysconfig.get_python_inc()])
+
+    env['SHLINK'] = config_vars['LDSHARED']
+    env['SHLIBPREFIX'] = ''
+
+    env['STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME'] = True
+
+    # Build module
+    pyvptree = env.SharedLibrary('#/lib/pyvptree', pyvptree_c + static_lib)
+
+else:
+    print('Warning: Could not find cython, skipping build of pyvptree.')
+    pyvptree = None
+
+Return('pyvptree')
