@@ -3,7 +3,7 @@ import re
 
 from SCons.Script import *
 
-mexre = re.compile('.*mex\s*=\s*(.*)')
+mexre = re.compile(r'.*mex\s*=\s*(.*)')
 
 def mexext(env):
     """Get extension for mex files."""
