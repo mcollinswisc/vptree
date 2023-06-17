@@ -1,3 +1,4 @@
+import platform
 
 gcc_warnings = ['implicit',
                 'format',
@@ -15,9 +16,10 @@ gcc_warnings = ['implicit',
                 'error']
 
 def generate(env):
-    for warning in gcc_warnings:
-        flag = '-W' + warning
-        env.AppendUnique(CFLAGS = [flag])
+    if platform.system() != "Windows":
+        for warning in gcc_warnings:
+            flag = '-W' + warning
+            env.AppendUnique(CFLAGS = [flag])
 
 def exists(env):
     # TODO: check that this is gcc > 4.0

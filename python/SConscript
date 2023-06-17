@@ -1,6 +1,9 @@
 from __future__ import print_function
-import os, os.path
+import os
 import distutils.sysconfig
+from distutils.command import build_ext
+from distutils.core import Distribution
+import platform
 
 Import('static_lib')
 env = Environment(ENV = os.environ)
@@ -24,9 +27,16 @@ if env.WhereIs('cython') is not None:
     if 'SO' in config_vars:
         env['SHLIBSUFFIX'] = config_vars['SO']
 
+    if platform.system() == "Windows":
+        b = build_ext.build_ext(Distribution())
+        b.finalize_options()
+        env['LIBPATH'] = b.library_dirs
     env.AppendUnique(CPPPATH = [distutils.sysconfig.get_python_inc()])
 
-    env['SHLINK'] = config_vars['LDSHARED']
+    try:
+        env['SHLINK'] = config_vars['LDSHARED']
+    except KeyError:
+        pass
     env['SHLIBPREFIX'] = ''
 
     env['STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME'] = True
