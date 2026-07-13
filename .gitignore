@@ -1,0 +1,12 @@
+# Output files
+/bin/
+/include/
+/lib/
+
+# Intermediate build files
+/.sconsign.dblite
+*.o
+*.os
+
+# Created from running the Python demo
+__pycache__
