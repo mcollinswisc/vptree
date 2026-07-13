@@ -1,7 +1,9 @@
 # Output files
 /bin/
+/examples/pyvptree.so
 /include/
 /lib/
+/python/pyvptree.c
 
 # Intermediate build files
 /.sconsign.dblite
