@@ -30,16 +30,18 @@ function city_list = cities_parse(path)
     if length(name_start) == 0
       continue
     end
+    name_start = name_start(1);
     name_end = strfind(tline((name_start+1):end), '"') + name_start;
     if length(name_end) == 0
       continue
     end
+    name_end = name_end(1);
     name = tline((name_start+1):(name_end-1));
       
     % Parse coordinates
     latitude = NaN;
     longitude = NaN;
-      
+
     coord_strs = tline((name_end+1):end);
     coord_strs = strsplit(coord_strs);
     for j=1:numel(coord_strs)
