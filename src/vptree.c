@@ -6,9 +6,10 @@
 #include "vptree.h"
 #include "vptree_struct.h"
 #include "pqueue.h"
+#include "math.h"
 
 #ifndef INFINITY
-#define INFINITY (1.0/0.0)
+#define INFINITY HUGE_VAL
 #endif
 
 /////////////////////////////// Default Options ////////////////////////////

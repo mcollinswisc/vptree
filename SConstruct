@@ -1,22 +1,26 @@
-from __future__ import print_function
 import os, os.path
+import platform
 
 # Set up environment
 env = Environment(ENV = os.environ)
 
-env.Tool('warnings')
+env.Tool('warning')
 
-env.Append(LIBS = ['m'])
-env.AppendUnique(CFLAGS = ['-g'], CXXFLAGS = ['-g'], LINKFLAGS = ['-g'])
-env.AppendUnique(CFLAGS = ['-O2'], CXXFLAGS = ['-O2'], LINKFLAGS = ['-O2'])
-#env.AppendUnique(CFLAGS = ['-pg'], CXXFLAGS = ['-pg'], LINKFLAGS = ['-pg'])
-env.AppendUnique(CFLAGS = ['-fPIC'], CXXFLAGS = ['-fPIC'])
+if platform.system() != "Windows":
+    env.Append(LIBS = ['m'])
+    env.AppendUnique(CFLAGS = ['-O2'], CXXFLAGS = ['-O2'], LINKFLAGS = ['-O2'])
+    env.AppendUnique(CFLAGS = ['-g'], CXXFLAGS = ['-g'], LINKFLAGS = ['-g'])
+    env.AppendUnique(CFLAGS = ['-fPIC'], CXXFLAGS = ['-fPIC'])
+else:
+    env.AppendUnique(CFLAGS = ['/O2'], CXXFLAGS = ['/O2'])
+    env.Append(CPPDEFINES=['_USE_MATH_DEFINES'])
 
 # Compile library
 core_src = ['pqueue.c', 'vptree.c', 'geom.c', 'vptree_cpp.cc']
 core_src = [os.path.join('src', f) for f in core_src]
 static_lib = env.StaticLibrary('lib/vptree', core_src)
-shared_lib = env.SharedLibrary('lib/vptree', core_src)
+if platform.system() != "Windows":
+    shared_lib = env.SharedLibrary('lib/vptree', core_src)
 
 # Install files
 env.Install('include/vptree', 'src/vptree.h')
@@ -33,12 +37,13 @@ if mexvptree is not None:
     env.Install('examples', mexvptree)
     env.Install('examples', ['matlab/VPTree.m', 'matlab/VPTreeIncNN.m'])
 
-# Test code
-common_test_code = ['src/timing.c']
-common_test_code += static_lib
-env.Program('bin/test-vptree', ['src/test_vptree.c'] + common_test_code)
+if platform.system() != "Windows":
+    # Test code
+    common_test_code = ['src/timing.c']
+    common_test_code += static_lib
+    env.Program('bin/test-vptree', ['src/test_vptree.c'] + common_test_code)
 
-# Examples
-env.Append(CPPPATH = [env.Dir('include')])
-env.Program('bin/cities', ['examples/cities.c'] + common_test_code)
-env.Program('bin/cities_cpp', ['examples/cities_cpp.cc'] + common_test_code)
+    # Examples
+    env.Append(CPPPATH = [env.Dir('include')])
+    env.Program('bin/cities', ['examples/cities.c'] + common_test_code)
+    env.Program('bin/cities_cpp', ['examples/cities_cpp.cc'] + common_test_code)

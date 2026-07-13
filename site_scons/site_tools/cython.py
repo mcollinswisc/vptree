@@ -41,7 +41,7 @@ def create_builder(env):
     return cython
 
 def cython_suffix_emitter(env, source):
-    print 'emitter called'
+    print('emitter called')
     return "$CYTHONCFILESUFFIX"
 
 def generate(env):
