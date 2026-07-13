@@ -19,7 +19,7 @@ class City:
         else:
             self.longitude = longitude
 
-    coord_re = re.compile('([0-9]+)\xc2\xb0([0-9]+)\'([NESW])')
+    coord_re = re.compile('([0-9]+)\xb0([0-9]+)\'([NESW])')
 
     @staticmethod
     def parse_coord(coord_str):
