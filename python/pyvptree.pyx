@@ -3,13 +3,13 @@ cimport vptree
 from cpython.mem cimport PyMem_Malloc, PyMem_Free
 import sys
 
-cdef void* pyalloc(void *user_data, size_t sz):
+cdef void* pyalloc(void *user_data, size_t sz) noexcept:
   return PyMem_Malloc(sz)
 
-cdef void pyfree(void *user_data, void *ptr):
+cdef void pyfree(void *user_data, void *ptr) noexcept:
   PyMem_Free(ptr)
 
-cdef double pydistance(void *user_data, const void *p1, const void *p2):
+cdef double pydistance(void *user_data, const void *p1, const void *p2) noexcept:
   self = <object>user_data
   py1 = <object>p1
   py2 = <object>p2
