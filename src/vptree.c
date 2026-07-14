@@ -349,6 +349,8 @@ static void add_knn(int k, const void **nn, double *nndist, const void *ndp, dou
 {
   int i, j;
 
+  assert(k >= 1);
+
   if(d >= nndist[k-1]) {
     return;
   }
@@ -370,6 +372,8 @@ static void nn_query(
 {
   double d, mu;
   int i, j;
+
+  assert(k >= 1);
 
   if(nd == NULL) {
     return;
@@ -401,6 +405,10 @@ void vptree_nearest_neighbor(
 {
   int i;
   double *nndist;
+
+  if (k < 1) {
+    return;
+  }
 
   // Set up temporary array for storing distances to neighbors
   nndist = (double *)allocate(vp, sizeof(double) * k);
@@ -682,6 +690,10 @@ void vptree_nearest_neighbor_approx(
   node *nd;
   pqueue_t *pq;
 
+  if (k < 1) {
+    return;
+  }
+
   if(max_nodes > vp->n) {
     max_nodes = vp->n;
   }
@@ -695,7 +707,8 @@ void vptree_nearest_neighbor_approx(
   }
 
   // Initialize priority queue
-  pnodes = (pqnode *)malloc(sizeof(pqnode) * 2 * max_nodes);
+  // Sized for visiting 2 children per node (for max_nodes) + the root
+  pnodes = (pqnode *)malloc(sizeof(pqnode) * (2 * max_nodes + 1));
   assert(pnodes != NULL);
 
   pnodes[0].nd = vp->root;

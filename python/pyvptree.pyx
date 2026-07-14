@@ -69,6 +69,9 @@ cdef class VPTree:
       raise self.excepts
 
   def nearest_neighbors(self, query, k = 1, max_nodes = None):
+    k = min(k, len(self.points))  # Truncate if too few possible neighbors
+    if k < 0:
+      raise ValueError(f"Invalid k = {k}")
     cdef const void **ptrs = <const void **>PyMem_Malloc(k * sizeof(void *))
 
     if max_nodes is None:
