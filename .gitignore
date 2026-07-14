@@ -5,6 +5,10 @@
 /lib/
 /python/pyvptree.c
 
+*.mex
+/examples/VPTree.m
+/examples/VPTreeIncNN.m
+
 # Intermediate build files
 /.sconsign.dblite
 *.o

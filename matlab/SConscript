@@ -10,6 +10,9 @@ if env.WhereIs('matlab') is not None and env.WhereIs('mex') is not None:
     #env.AppendUnique(MEXFLAGS = ['-g'])
 
     mexvptree = env.Mex('vptree_mex', ['vptree_mex.c', 'mex_interface.c', 'mex_convert.c'] + static_lib)
+elif env.WhereIs('mkoctfile'):
+    env.Tool('octfile')
+    mexvptree = env.Mex('vptree_mex', ['vptree_mex.c', 'mex_interface.c', 'mex_convert.c'] + static_lib)
 else:
     print('Warning: could not find Matlab or mex, skipping...')
     mexvptree = None

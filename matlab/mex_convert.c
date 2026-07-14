@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <string.h>
 
 #include "mex_convert.h"
 #include "mex_interface.h"
