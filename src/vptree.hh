@@ -41,9 +41,10 @@ class IncrementalKNN
   friend class VPTree<Point>;
 
 protected:
-  IncrementalKNN(const vptree *vp, const Point &query)
+  IncrementalKNN(const vptree *vp, const Point &query) :
+    query(query)
   {
-    inc_ = vptree_incnn_begin(vp, &query);
+    inc_ = vptree_incnn_begin(vp, &this->query);
     next();
   }
 
@@ -63,7 +64,7 @@ public:
     return p;
   }
 
-  const IncrementalKNN *operator ++ ()
+  const IncrementalKNN &operator ++ ()
   {
     next();
     return *this;
@@ -72,6 +73,10 @@ public:
 private:
   vptree_incnn *inc_;
   const Point *p;
+  const Point query;
+
+  IncrementalKNN(const IncrementalKNN &) = delete;
+  IncrementalKNN &operator=(const IncrementalKNN &) = delete;
 };
 
 template<class Point>
