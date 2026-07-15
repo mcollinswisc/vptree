@@ -24,11 +24,17 @@ static void default_deallocate(void *user_data, void *data)
   free(data);
 }
 
+static void *default_reallocate(void *user_data, void *data, size_t new_size)
+{
+  return realloc(data, new_size);
+}
+
 const vptree_options vptree_default_options = {
   .user_data = NULL,
   .distance = NULL,
   .allocate = default_allocate,
-  .deallocate = default_deallocate
+  .deallocate = default_deallocate,
+  .reallocate = default_reallocate,
 };
 
 /////////////////////////////// vp-tree Construction ////////////////////////
@@ -88,7 +94,7 @@ vptree *vptree_clone(const vptree *src)
   vptree *dst;
 
   // Copy vp-tree struct
-  dst = (vptree *)src->opts.allocate(src->opts.user_data, sizeof(vptree));
+  dst = (vptree *)allocate(src, sizeof(vptree));
   dst->opts = src->opts;
   dst->n = src->n;
 
@@ -426,12 +432,10 @@ void vptree_nearest_neighbor(
 
 ////////////////////////////// Neighborhood Query ///////////////////////
 
-static void add_nbr_point(int *n, const void ***nbr, const void *p)
+static void add_nbr_point(const vptree *vp, int *n, const void ***nbr, const void *p)
 {
-  // TODO: using realloc here may not place nicely with user-provided
-  // allocate/deallocate
   *n += 1;
-  *nbr = realloc(*nbr, *n * sizeof(const void *));
+  *nbr = reallocate(vp, *nbr, *n * sizeof(const void *));
   (*nbr)[*n - 1] = p;
 }
 
@@ -446,7 +450,7 @@ static void epsilon_query(const vptree *vp, node *nd, const void *p, double epsi
 
   d = distance(vp, p, nd->p);
   if(d < epsilon) {
-    add_nbr_point(nfound, nbr, nd->p);
+    add_nbr_point(vp, nfound, nbr, nd->p);
   }
 
   mu = nd->mu;

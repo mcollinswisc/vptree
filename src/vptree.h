@@ -22,12 +22,9 @@ typedef struct {
   double (*distance)(void *user_data, const void *p1, const void *p2);
 
   /* Memory management closures */
-
-  /**
-   * Delete user data
-   */
   void *(*allocate)(void *user_data, size_t s);
   void (*deallocate)(void *user_data, void *data);
+  void *(*reallocate)(void *user_data, void *data, size_t new_size);
   
 } vptree_options;
 

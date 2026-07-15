@@ -2,12 +2,14 @@ cdef extern from "../include/vptree/vptree.h":
   ctypedef double (*distance_funcptr)(void *, const void *, const void *)
   ctypedef void *(*alloc_funcptr)(void *, size_t)
   ctypedef void (*dealloc_funcptr)(void *, void *)
+  ctypedef void *(*realloc_funcptr)(void *, void *, size_t)
 
   ctypedef struct vptree_options:
     void *user_data
     distance_funcptr distance
     alloc_funcptr allocate
     dealloc_funcptr deallocate
+    realloc_funcptr reallocate
 
   vptree_options vptree_default_options
 

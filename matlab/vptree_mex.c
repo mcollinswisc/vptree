@@ -12,6 +12,7 @@
 static double vpmex_distance(void *user_data, const void *p1, const void *p2);
 static void *vpmex_allocate(void *user_data, size_t s);
 static void vpmex_deallocate(void *user_data, void *data);
+static void *vpmex_reallocate(void *user_data, void *data, size_t new_size);
 
 typedef struct vpmex_elt vpmex_elt;
 
@@ -127,7 +128,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     nn = vptree_neighborhood(mexvp->vp, query, eps, &k);
     plhs[0] = vpmex_neighbors_to_cellarr(k, nn);
 
-    free(nn); /* TODO: replace with mxFree once realloc issue is resolved */
+    mxFree(nn);
   }
   else if(!strcmp(cmd, "incnn_begin")) {
     mex_assert(nrhs == 3);
@@ -200,6 +201,11 @@ static void vpmex_deallocate(void *user_data, void *data)
   mxFree(data);
 }
 
+static void *vpmex_reallocate(void *user_data, void *data, size_t new_size)
+{
+  return mxRealloc(data, new_size);
+}
+
 static mxArray *vpmex_to_handle(vpmex_tree *vp)
 {
   mxArray *arr;
@@ -259,6 +265,7 @@ static vpmex_tree *vpmex_create(const mxArray *distance_handle)
   opts.distance = vpmex_distance;
   opts.allocate = vpmex_allocate;
   opts.deallocate = vpmex_deallocate;
+  opts.reallocate = vpmex_reallocate;
 
   mexvp->vp = vptree_create(sizeof(opts), &opts);
   if(mexvp->vp == NULL) {

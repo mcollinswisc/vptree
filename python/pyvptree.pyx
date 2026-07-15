@@ -1,13 +1,16 @@
 import cython
 cimport vptree
-from cpython.mem cimport PyMem_Malloc, PyMem_Free
+from cpython.mem cimport PyMem_Malloc, PyMem_Free, PyMem_Realloc
 import sys
 
-cdef void* pyalloc(void *user_data, size_t sz) noexcept:
+cdef void *pyalloc(void *user_data, size_t sz) noexcept:
   return PyMem_Malloc(sz)
 
 cdef void pyfree(void *user_data, void *ptr) noexcept:
   PyMem_Free(ptr)
+
+cdef void *pyrealloc(void *user_data, void *ptr, size_t new_size) noexcept:
+  return PyMem_Realloc(ptr, new_size)
 
 cdef double pydistance(void *user_data, const void *p1, const void *p2) noexcept:
   self = <object>user_data
@@ -29,6 +32,7 @@ cdef class VPTree:
     opts.distance = pydistance
     opts.allocate = pyalloc
     opts.deallocate = pyfree
+    opts.reallocate = pyrealloc
     self._c_vp = vptree.vptree_create(cython.sizeof(opts), &opts)
     if self._c_vp is NULL:
       raise MemoryError()

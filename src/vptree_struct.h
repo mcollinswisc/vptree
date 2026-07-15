@@ -93,6 +93,11 @@ static void deallocate(const vptree *vp, void *data)
   vp->opts.deallocate(vp->opts.user_data, data);
 }
 
+static void *reallocate(const vptree *vp, void *data, size_t new_size)
+{
+  return vp->opts.reallocate(vp->opts.user_data, data, new_size);
+}
+
 static double distance(const vptree *vp, const void *p1, const void *p2)
 {
   return vp->opts.distance(vp->opts.user_data, p1, p2);
