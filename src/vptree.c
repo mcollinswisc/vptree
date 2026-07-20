@@ -703,7 +703,7 @@ void vptree_nearest_neighbor_approx(
   }
 
   // Initialize nn state
-  nndist = (double *)malloc(sizeof(double) * k);
+  nndist = (double *)allocate(vp, sizeof(double) * k);
   assert(nndist != NULL);
   for(i = 0; i < k; i++) {
     nndist[i] = INFINITY;
@@ -712,14 +712,24 @@ void vptree_nearest_neighbor_approx(
 
   // Initialize priority queue
   // Sized for visiting 2 children per node (for max_nodes) + the root
-  pnodes = (pqnode *)malloc(sizeof(pqnode) * (2 * max_nodes + 1));
+  pnodes = (pqnode *)allocate(vp, sizeof(pqnode) * (2 * max_nodes + 1));
   assert(pnodes != NULL);
 
   pnodes[0].nd = vp->root;
   pnodes[0].prio = 0;
   next_node = 1;
 
-  pq = pqueue_init(2 * max_nodes, pqueue_cmp_prio, pqueue_get_prio, pqueue_set_prio, pqueue_get_pos, pqueue_set_pos);
+  pq = pqueue_init(
+    /*n=*/2 * max_nodes,
+    pqueue_cmp_prio,
+    pqueue_get_prio,
+    pqueue_set_prio,
+    pqueue_get_pos,
+    pqueue_set_pos,
+    vp->opts.allocate,
+    vp->opts.deallocate,
+    vp->opts.reallocate,
+    vp->opts.user_data);
   assert(pq != NULL);
 
   r = pqueue_insert(pq, &pnodes[0]);
@@ -764,6 +774,6 @@ void vptree_nearest_neighbor_approx(
 
   // Cleanup
   pqueue_free(pq);
-  free(pnodes);
-  free(nndist);
+  deallocate(vp, pnodes);
+  deallocate(vp, nndist);
 }

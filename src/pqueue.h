@@ -40,6 +40,10 @@ typedef int (*pqueue_cmp_pri_f)(pqueue_pri_t next, pqueue_pri_t curr);
 typedef size_t (*pqueue_get_pos_f)(void *a);
 typedef void (*pqueue_set_pos_f)(void *a, size_t pos);
 
+/** For using in custom allocators */
+typedef void *(*pqueue_allocate_f)(void *user_data, size_t s);
+typedef void (*pqueue_deallocate_f)(void *user_data, void *data);
+typedef void *(*pqueue_reallocate_f)(void *user_data, void *data, size_t new_size);
 
 /** debug callback function to print a entry */
 typedef void (*pqueue_print_entry_f)(FILE *out, void *a);
@@ -56,6 +60,10 @@ typedef struct pqueue_t
     pqueue_set_pri_f setpri;
     pqueue_get_pos_f getpos;
     pqueue_set_pos_f setpos;
+    pqueue_allocate_f alloc;
+    pqueue_deallocate_f dealloc;
+    pqueue_reallocate_f realloc;
+    void *user_data;  // Passed to allocator
     void **d;
 } pqueue_t;
 
@@ -77,7 +85,11 @@ pqueue_init(size_t n,
             pqueue_get_pri_f getpri,
             pqueue_set_pri_f setpri,
             pqueue_get_pos_f getpos,
-            pqueue_set_pos_f setpos);
+            pqueue_set_pos_f setpos,
+            pqueue_allocate_f alloc,
+            pqueue_deallocate_f dealloc,
+            pqueue_reallocate_f realloc,
+            void *user_data);
 
 
 /**

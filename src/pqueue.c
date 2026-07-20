@@ -34,16 +34,20 @@ pqueue_init(size_t n,
             pqueue_get_pri_f getpri,
             pqueue_set_pri_f setpri,
             pqueue_get_pos_f getpos,
-            pqueue_set_pos_f setpos)
+            pqueue_set_pos_f setpos,
+            pqueue_allocate_f alloc,
+            pqueue_deallocate_f dealloc,
+            pqueue_reallocate_f realloc,
+            void *user_data)
 {
     pqueue_t *q;
 
-    if (!(q = malloc(sizeof(pqueue_t))))
+    if (!(q = alloc(user_data, sizeof(pqueue_t))))
         return NULL;
 
     /* Need to allocate n+1 elements since element 0 isn't used. */
-    if (!(q->d = malloc((n + 1) * sizeof(void *)))) {
-        free(q);
+    if (!(q->d = alloc(user_data, (n + 1) * sizeof(void *)))) {
+        dealloc(user_data, q);
         return NULL;
     }
 
@@ -54,6 +58,10 @@ pqueue_init(size_t n,
     q->getpri = getpri;
     q->getpos = getpos;
     q->setpos = setpos;
+    q->alloc = alloc;
+    q->dealloc = dealloc;
+    q->realloc = realloc;
+    q->user_data = user_data;
 
     return q;
 }
@@ -62,8 +70,14 @@ pqueue_init(size_t n,
 void
 pqueue_free(pqueue_t *q)
 {
-    free(q->d);
-    free(q);
+    pqueue_deallocate_f dealloc;
+    void *user_data;
+
+    dealloc = q->dealloc;
+    user_data = q->user_data;
+
+    dealloc(user_data, q->d);
+    dealloc(user_data, q);
 }
 
 
@@ -143,7 +157,7 @@ pqueue_insert(pqueue_t *q, void *d)
     /* allocate more memory if necessary */
     if (q->size >= q->avail) {
         newsize = q->size + q->step;
-        if (!(tmp = realloc(q->d, sizeof(void *) * newsize)))
+        if (!(tmp = q->realloc(q->user_data, q->d, sizeof(void *) * newsize)))
             return 1;
         q->d = tmp;
         q->avail = newsize;
@@ -259,7 +273,8 @@ pqueue_print(pqueue_t *q,
 
     dup = pqueue_init(q->size,
                       q->cmppri, q->getpri, set_pri,
-                      q->getpos, set_pos);
+                      q->getpos, set_pos, q->alloc,
+                      q->dealloc, q->realloc, q->user_data);
     dup->size = q->size;
     dup->avail = q->avail;
     dup->step = q->step;
